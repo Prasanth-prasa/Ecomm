@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-KaddysShopApplication<kaddysShop>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "edu.guvi.kaddysShop.KaddysShopApplication",
+            "projectName": "kaddysShop",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+<div th:fragment="header" class="border-b bg-white shadow-sm">
+
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+        <!-- LEFT MENU -->
+        <div class="flex items-center space-x-6 text-gray-700 text-lg font-medium">
+            <a href="/" class="hover:text-black">Home</a>
+            <a href="/products" class="hover:text-black">Shop</a>
+            <a href="/order/my-orders" class="hover:text-black">My Orders</a>
+        </div>
+
+        <!-- CENTER LOGO -->
+        <div>
+            <a href="/" class="text-3xl font-bold tracking-wide">
+                KADDYS<span class="text-gray-400">SHOP</span>
+            </a>
+        </div>
+
+        <!-- RIGHT MENU -->
+        <div class="flex items-center space-x-6 text-gray-700 text-lg font-medium">
+
+            <a href="/cart" class="hover:text-black flex items-center space-x-1">
+                <span>Cart</span>
+            </a>
+
+            <a href="/logout" class="hover:text-red-500">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

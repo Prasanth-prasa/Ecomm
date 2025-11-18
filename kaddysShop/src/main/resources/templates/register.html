@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Register - Kaddys Shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+<header class="w-full bg-white shadow">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="text-2xl font-bold">Kaddys Shop</a>
+    <nav class="space-x-6">
+      <a href="/products" class="hover:text-red-600">Shop</a>
+      <a href="/auth/login" class="hover:text-red-600">Login</a>
+      <a href="/auth/register" class="hover:text-red-600">Register</a>
+    </nav>
+  </div>
+</header>
+
+<main class="flex items-center justify-center min-h-screen">
+  <div class="w-full max-w-md p-8 bg-white shadow-md rounded-xl">
+    <h2 class="text-3xl font-bold mb-6 text-center">Create Your Account</h2>
+
+    <form th:action="@{/auth/register}" th:object="${user}" method="post" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Name</label>
+        <input th:field="*{name}" type="text" required
+               class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500"/>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input th:field="*{email}" type="email" required
+               class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500"/>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Password</label>
+        <input th:field="*{password}" type="password" required
+               class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500"/>
+      </div>
+      <button type="submit"
+              class="w-full py-3 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">
+        Register
+      </button>
+
+      <p class="text-center text-sm text-gray-600">
+        Already have an account? <a th:href="@{/auth/login}" class="text-red-600 hover:underline">Login here</a>
+      </p>
+
+      <p th:if="${error}" th:text="${error}" class="text-center text-red-500"></p>
+    </form>
+  </div>
+</main>
+
+<footer class="text-center py-6 text-gray-500">
+  © 2025 Kaddys Shop
+</footer>
+</body>
+</html>

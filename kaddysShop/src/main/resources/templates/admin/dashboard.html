@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Kaddys Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+<!-- MAIN WRAPPER -->
+<div class="flex">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-white shadow-lg h-screen fixed">
+        <div class="p-6">
+            <h1 class="text-2xl font-bold text-gray-800">Kaddys Admin</h1>
+        </div>
+
+        <nav class="mt-6 space-y-2">
+
+            <a href="/admin/dashboard"
+               class="block py-3 px-6 text-gray-900 bg-gray-200 font-semibold rounded-r-full">
+                Dashboard
+            </a>
+
+            <a href="/products/admin/add"
+               class="block py-3 px-6 text-gray-700 hover:bg-gray-200 rounded-r-full">
+                Add Product
+            </a>
+
+            <a href="/products"
+               class="block py-3 px-6 text-gray-700 hover:bg-gray-200 rounded-r-full">
+                Manage Products
+            </a>
+
+            <a href="#"
+               class="block py-3 px-6 text-gray-700 hover:bg-gray-200 rounded-r-full">
+                Orders (coming soon)
+            </a>
+
+            <a href="#"
+               class="block py-3 px-6 text-gray-700 hover:bg-gray-200 rounded-r-full">
+                Users (coming soon)
+            </a>
+
+            <a href="/logout"
+               class="block py-3 px-6 text-red-600 hover:bg-red-100 rounded-r-full">
+                Logout
+            </a>
+
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 ml-64 p-10">
+
+        <!-- TOP NAV BAR -->
+        <div class="flex items-center justify-between mb-10">
+            <h1 class="text-3xl font-bold text-gray-800">Dashboard</h1>
+
+            <div class="flex items-center space-x-4 bg-white px-4 py-2 rounded-lg shadow">
+                <span class="text-gray-600">Admin</span>
+                <img src="https://ui-avatars.com/api/?name=Admin&background=000&color=fff"
+                     class="w-10 h-10 rounded-full">
+            </div>
+        </div>
+
+        <!-- STATS CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <h2 class="text-gray-500 text-sm">Total Products</h2>
+                <p class="text-4xl font-bold text-gray-800 mt-2">120</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <h2 class="text-gray-500 text-sm">Orders</h2>
+                <p class="text-4xl font-bold text-gray-800 mt-2">43</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <h2 class="text-gray-500 text-sm">Users</h2>
+                <p class="text-4xl font-bold text-gray-800 mt-2">300</p>
+            </div>
+
+        </div>
+
+        <!-- ACTIONS SECTION -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+            <!-- CARD: Add Product -->
+            <div class="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
+                <h2 class="text-2xl font-bold mb-4">Add New Product</h2>
+                <p class="text-gray-600 mb-6">Create and upload new fashion items.</p>
+
+                <a href="/products/admin/add"
+                   class="inline-block bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800">
+                    Add Product
+                </a>
+            </div>
+
+            <!-- CARD: Manage Products -->
+            <div class="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
+                <h2 class="text-2xl font-bold mb-4">Manage Products</h2>
+                <p class="text-gray-600 mb-6">Edit, delete, or update product inventory.</p>
+
+                <a href="/products"
+                   class="inline-block bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800">
+                    View All Products
+                </a>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

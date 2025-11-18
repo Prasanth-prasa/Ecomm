@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "cloudinary.cloud_name",
+    "type": "java.lang.String",
+    "description": "A description for 'cloudinary.cloud_name'"
+  },
+  {
+    "name": "cloudinary.api_key",
+    "type": "java.lang.String",
+    "description": "A description for 'cloudinary.api_key'"
+  },
+  {
+    "name": "cloudinary.api_secret",
+    "type": "java.lang.String",
+    "description": "A description for 'cloudinary.api_secret'"
+  },
+  {
+    "name": "cashfree.appId",
+    "type": "java.lang.String",
+    "description": "A description for 'cashfree.appId'"
+  },
+  {
+    "name": "cashfree.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'cashfree.secret'"
+  },
+  {
+    "name": "cashfree.returnUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'cashfree.returnUrl'"
+  },
+  {
+    "name": "cashfree.baseUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'cashfree.baseUrl'"
+  },
+  {
+    "name": "cashfree.cancelUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'cashfree.cancelUrl'"
+  },
+  {
+    "name": "paypal.client.id",
+    "type": "java.lang.String",
+    "description": "A description for 'paypal.client.id'"
+  }
+]}

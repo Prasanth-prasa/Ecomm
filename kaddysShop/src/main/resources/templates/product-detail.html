@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+<!-- HEADER -->
+<div th:replace="fragments/header :: header"></div>
+
+<div class="max-w-6xl mx-auto px-6 mt-16 bg-white p-10 rounded-xl shadow">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+        <!-- PRODUCT IMAGE -->
+        <div class="bg-gray-200 h-96 flex items-center justify-center rounded-lg overflow-hidden">
+
+            <img th:if="${product.image != null && !product.image.isEmpty()}"
+                 th:src="${product.image}"
+                 class="w-full h-full object-cover"
+                 alt="Product Image"/>
+
+            <span th:if="${product.image == null || product.image.isEmpty()}"
+                  class="text-gray-500 text-lg">
+                No Image Available
+            </span>
+
+        </div>
+
+        <!-- PRODUCT DETAILS -->
+        <div>
+            <h1 class="text-4xl font-bold" th:text="${product.name}"></h1>
+
+            <p class="text-gray-600 mt-4 text-lg" th:text="${product.description}"></p>
+
+            <div class="text-3xl font-bold text-black mt-6">
+                ₹ <span th:text="${product.price}"></span>
+            </div>
+
+            <a th:href="@{'/cart/add/' + ${product.id}}"
+               class="mt-8 inline-block bg-black text-white px-6 py-3 rounded-lg text-lg hover:bg-gray-800">
+                Add to Cart
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
