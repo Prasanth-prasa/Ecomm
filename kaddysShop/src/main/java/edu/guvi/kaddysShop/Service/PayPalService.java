@@ -14,9 +14,25 @@ public class PayPalService {
     @Autowired
     private PayPalHttpClient client;
 
+    // CHANGE THIS TO YOUR DEPLOYED URL
+    private static final String DEPLOYED_URL = "https://kaddysShop.onrender.com";
+
+    // Detect localhost automatically
+    private boolean isLocalhost() {
+        return java.net.InetAddress.getLoopbackAddress().getHostName().equals("localhost");
+    }
+
+    private String buildUrl(String path, String orderId) {
+        if (isLocalhost()) {
+            return "http://localhost:8080" + path + "?orderId=" + orderId;
+        } else {
+            return DEPLOYED_URL + path + "?orderId=" + orderId;
+        }
+    }
+
     public String createPayment(String orderId, double inrAmount) throws IOException {
 
-        double usdAmount = inrAmount / 85.0;  // Approx INR → USD
+        double usdAmount = inrAmount / 85.0;  // INR → USD approx
 
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.checkoutPaymentIntent("CAPTURE");
@@ -24,15 +40,14 @@ public class PayPalService {
         ApplicationContext context = new ApplicationContext()
                 .brandName("KaddysShop")
                 .landingPage("LOGIN")
-                .returnUrl("http://localhost:8080/payment/success?orderId=" + orderId)
-                .cancelUrl("http://localhost:8080/payment/cancel?orderId=" + orderId);
+                .returnUrl(buildUrl("/payment/success", orderId))
+                .cancelUrl(buildUrl("/payment/cancel", orderId));
 
         PurchaseUnitRequest unit = new PurchaseUnitRequest()
                 .referenceId(orderId)
                 .amountWithBreakdown(new AmountWithBreakdown()
                         .currencyCode("USD")
-                        .value(String.format("%.2f", usdAmount))
-                );
+                        .value(String.format("%.2f", usdAmount)));
 
         orderRequest.purchaseUnits(List.of(unit));
         orderRequest.applicationContext(context);
@@ -42,7 +57,7 @@ public class PayPalService {
 
         Order order = client.execute(request).result();
 
-        // return approval URL
+        // Return approval URL
         return order.links().stream()
                 .filter(x -> x.rel().equalsIgnoreCase("approve"))
                 .findFirst()
