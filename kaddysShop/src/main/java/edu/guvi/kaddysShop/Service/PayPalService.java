@@ -14,25 +14,29 @@ public class PayPalService {
     @Autowired
     private PayPalHttpClient client;
 
-    // CHANGE THIS TO YOUR DEPLOYED URL
-    private static final String DEPLOYED_URL = "https://kaddysShop.onrender.com";
+    // Base URL for production (Render)
+    private static final String PROD_URL = "https://ecomm-qhmy.onrender.com";
 
-    // Detect localhost automatically
-    private boolean isLocalhost() {
-        return java.net.InetAddress.getLoopbackAddress().getHostName().equals("localhost");
+    // Base URL for local development
+    private static final String LOCAL_URL = "http://localhost:8080";
+
+    private boolean isLocalEnvironment() {
+        // Spring Boot sets this correctly
+        String env = System.getenv("ENV");
+        return env != null && env.equals("LOCAL");
     }
 
     private String buildUrl(String path, String orderId) {
-        if (isLocalhost()) {
-            return "http://localhost:8080" + path + "?orderId=" + orderId;
+        if (isLocalEnvironment()) {
+            return LOCAL_URL + path + "?orderId=" + orderId;
         } else {
-            return DEPLOYED_URL + path + "?orderId=" + orderId;
+            return PROD_URL + path + "?orderId=" + orderId;
         }
     }
 
     public String createPayment(String orderId, double inrAmount) throws IOException {
 
-        double usdAmount = inrAmount / 85.0;  // INR → USD approx
+        double usdAmount = inrAmount / 85.0;
 
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.checkoutPaymentIntent("CAPTURE");
@@ -57,7 +61,6 @@ public class PayPalService {
 
         Order order = client.execute(request).result();
 
-        // Return approval URL
         return order.links().stream()
                 .filter(x -> x.rel().equalsIgnoreCase("approve"))
                 .findFirst()
